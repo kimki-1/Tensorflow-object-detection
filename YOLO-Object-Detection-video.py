@@ -46,7 +46,7 @@ def box_draw(image, boxes, scores, classes, all_classes):
         cv2.putText(image, '{0} {1:.2f}'.format(all_classes[cl], score),
                     (top, left - 6),
                     cv2.FONT_HERSHEY_SIMPLEX,
-                    0.6, (0, 0, 255), 1,
+                    1.2, (0, 255, 255), 1,
                     cv2.LINE_AA)
 
         print('class: {0}, score: {1:.2f}'.format(all_classes[cl], score))
