@@ -46,7 +46,7 @@ def box_draw(image, boxes, scores, classes, all_classes):
         cv2.putText(image, '{0} {1:.2f}'.format(all_classes[cl], score),
                     (top, left - 6),
                     cv2.FONT_HERSHEY_SIMPLEX,
-                    0.6, (0, 0, 255), 1,
+                    1.2, (0, 255, 255), 2,
                     cv2.LINE_AA)
 
         print('class: {0}, score: {1:.2f}'.format(all_classes[cl], score))
@@ -74,6 +74,7 @@ yolo = YOLO(0.6, 0.5)
 all_classes = get_classes('yolo/data/coco_classes.txt')
 # image = cv2.imread('yolo/images/test/bike.JPG')
 image = cv2.imread('data/images/test3.jpg')
+
 result_image = detect_image(image, yolo, all_classes)
 
 cv2.imshow('result', cv2.resize(result_image, (1600, 1000)))

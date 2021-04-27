@@ -25,7 +25,8 @@ utils_ops.tf = tf.compat.v1
 tf.gfile = tf.io.gfile
 
 # 내 로컬에 설치된 TFOD경로 
-PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+# PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS)
 # print(category_index)
 
@@ -54,11 +55,12 @@ detection_model = load_model(model_name)
 
 def run_inference_for_single_image(model, image):
     image = np.asarray(image)
+    print(image.shape)
     # The input needs to be a tensor, convert it using `tf.convert_to_tensor`.
     input_tensor = tf.convert_to_tensor(image)
     # The model expects a batch of images, so add an axis with `tf.newaxis`.
     input_tensor = input_tensor[tf.newaxis,...]
-
+    print(input_tensor)
     # Run inference
     model_fn = model.signatures['serving_default']
     output_dict = model_fn(input_tensor)
@@ -95,14 +97,15 @@ def run_inference_for_single_image(model, image):
 
 ## 예측한 결과를 보여줘라 
 def show_inference(model, image_path):
+
     image_np = cv2.imread(str(image_path))
-    
+    print(image_np)
     # image_np = np.array(Image.open(image_path))
     # 이미지를 오픈으로 받아오면 변경시켜야한다 
     # image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
     
     output_dict = run_inference_for_single_image(model, image_np)
-        
+    
     vis_util.visualize_boxes_and_labels_on_image_array(
         image_np,
         np.array(output_dict['detection_boxes']),
@@ -112,7 +115,6 @@ def show_inference(model, image_path):
         instance_masks=output_dict.get('detection_masks_reframed',None),
         use_normalized_coordinates=True,
         line_thickness=8)
-        
     cv2.imshow(str(image_path), cv2.resize(image_np, (1600, 1000)))
     
 
@@ -120,7 +122,7 @@ def show_inference(model, image_path):
 PATH_TO_TEST_IMAGE_DIR = pathlib.Path('data\\images')
 TEST_IMAGE_PATH = sorted( list(PATH_TO_TEST_IMAGE_DIR.glob("*.jpg")) )
 
-show_inference(detection_model, 'data/images/test8.jpg')
+show_inference(detection_model, 'data/images/image1.jpg')
 
 # for image_path in TEST_IMAGE_PATH:
 #     show_inference(detection_model, image_path)
