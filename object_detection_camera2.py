@@ -103,7 +103,9 @@ def show_inference(model, image_np):
         use_normalized_coordinates=True,
         line_thickness=8)
 
-    cv2.imshow('result', cv2.resize(image_np, (1600, 1000)))
+    cv2.imshow('result', cv2.resize(image_np, (800, 500)))
+
+    return image_np
     
 cap = cv2.VideoCapture("data/videos/test.mp4")
 
@@ -114,19 +116,34 @@ if cap.isOpened() == False :
     print("Error opening video stream of file") 
 
 else :
+    # # 프레임의 정보 가져오기 : 화면 크기 ( width, height )
+    # frame_width = int (cap.get(3)) 
+    # frame_height = int(cap.get(4))
+
+    # # 캠으로 들어온 비디오를 저장하는 코드 
+    # out = cv2.VideoWriter("data/videos/SSD3.mp4", 
+    #                 cv2.VideoWriter_fourcc(*'H264'), 
+    #                 10,
+    #                 (600, 300) )
+                     
 
     while cap.isOpened() :
 
         ret, frame = cap.read()
 
         if ret == True : 
+
             strat_time = time.time()
             ### 이부분을 모델 추론하고 화면에 보여주는 코드로 변경 
-            show_inference(detection_model, frame)
+            show_inference(detection_model, frame) # img= 받아서 저장 
+            # img = cv2.resize(img, (600,300), fx=0, fy=0, interpolation=cv2.INTER_CUBIC ) # 영상크기조절 
+            # out.write(img)
+
             end_time = time.time()
             print(end_time - strat_time)
             if cv2.waitKey(25) & 0xFF==27 :
                 break
+
 
         else :
             break
