@@ -103,7 +103,7 @@ def show_inference(model, image_np):
         use_normalized_coordinates=True,
         line_thickness=8)
 
-    cv2.imshow('result', cv2.resize(image_np, (800, 500)))
+    cv2.imshow('result', cv2.resize(image_np, (1600, 800)))
 
     return image_np
     
@@ -124,7 +124,7 @@ else :
     # out = cv2.VideoWriter("data/videos/SSD3.mp4", 
     #                 cv2.VideoWriter_fourcc(*'H264'), 
     #                 10,
-    #                 (600, 300) )
+    #                 (frame_width, frame_height) )
                      
 
     while cap.isOpened() :

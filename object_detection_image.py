@@ -25,8 +25,8 @@ utils_ops.tf = tf.compat.v1
 tf.gfile = tf.io.gfile
 
 # 내 로컬에 설치된 TFOD경로 
-# PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
-PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+# PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS)
 # print(category_index)
 
@@ -55,12 +55,10 @@ detection_model = load_model(model_name)
 
 def run_inference_for_single_image(model, image):
     image = np.asarray(image)
-    print(image.shape)
     # The input needs to be a tensor, convert it using `tf.convert_to_tensor`.
     input_tensor = tf.convert_to_tensor(image)
     # The model expects a batch of images, so add an axis with `tf.newaxis`.
     input_tensor = input_tensor[tf.newaxis,...]
-    print(input_tensor)
     # Run inference
     model_fn = model.signatures['serving_default']
     output_dict = model_fn(input_tensor)
@@ -99,7 +97,6 @@ def run_inference_for_single_image(model, image):
 def show_inference(model, image_path):
 
     image_np = cv2.imread(str(image_path))
-    print(image_np)
     # image_np = np.array(Image.open(image_path))
     # 이미지를 오픈으로 받아오면 변경시켜야한다 
     # image_np = cv2.cvtColor(image_np, cv2.COLOR_RGB2BGR)
@@ -120,12 +117,12 @@ def show_inference(model, image_path):
 
 ## 함수 테스트
 PATH_TO_TEST_IMAGE_DIR = pathlib.Path('data\\images')
-TEST_IMAGE_PATH = sorted( list(PATH_TO_TEST_IMAGE_DIR.glob("*.jpg")) )
+TEST_IMAGE_PATH = sorted( list(PATH_TO_TEST_IMAGE_DIR.glob("testing*")) )
 
-show_inference(detection_model, 'data/images/image1.jpg')
+# show_inference(detection_model, 'data/images/image1.jpg')
 
-# for image_path in TEST_IMAGE_PATH:
-#     show_inference(detection_model, image_path)
+for image_path in TEST_IMAGE_PATH:
+    show_inference(detection_model, image_path)
 
 cv2.waitKey()
 cv2.destroyAllWindows()

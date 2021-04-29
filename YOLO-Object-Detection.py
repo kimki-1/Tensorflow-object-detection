@@ -1,6 +1,7 @@
 import time 
 import cv2
 import numpy as np 
+import pathlib
 
 from yolo.model.yolo_model import YOLO
 
@@ -72,12 +73,12 @@ def detect_image(image, yolo, all_classes) :
 
 yolo = YOLO(0.6, 0.5)
 all_classes = get_classes('yolo/data/coco_classes.txt')
-# image = cv2.imread('yolo/images/test/bike.JPG')
-image = cv2.imread('data/images/test3.jpg')
+
+image = cv2.imread('yolo/images/test/testing.JPG')
+
 
 result_image = detect_image(image, yolo, all_classes)
-
-cv2.imshow('result', cv2.resize(result_image, (1600, 1000)))
+cv2.imshow('result', result_image)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
