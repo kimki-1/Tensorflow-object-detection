@@ -74,7 +74,7 @@ def detect_image(image, yolo, all_classes) :
 yolo = YOLO(0.6, 0.5)
 all_classes = get_classes('yolo/data/coco_classes.txt')
 
-image = cv2.imread('yolo/images/test/testing.JPG')
+image = cv2.imread('yolo/images/test/testing3.JPG')
 
 
 result_image = detect_image(image, yolo, all_classes)

@@ -67,7 +67,7 @@ def detect_image(image, yolo, all_classes) :
     
     return image 
 
-cap = cv2.VideoCapture("data/videos/test.mp4")
+cap = cv2.VideoCapture("data/videos/test3.mp4")
 
 ## 카메라의 영상을 실행하는 코드
 # cap = cv2.VideoCapture(0)
@@ -76,17 +76,17 @@ if cap.isOpened() == False :
     print("Error opening video stream of file") 
 
 else :
-    # # 프레임의 정보 가져오기 : 화면 크기 ( width, height )
-    # frame_width = int (cap.get(3)) 
-    # frame_height = int(cap.get(4))
+    # 프레임의 정보 가져오기 : 화면 크기 ( width, height )
+    frame_width = int (cap.get(3)) 
+    frame_height = int(cap.get(4))
 
-    # # 캠으로 들어온 비디오를 저장하는 코드 
-    # out = cv2.VideoWriter("data/videos/YOLO3.mp4", 
-    #                 cv2.VideoWriter_fourcc(*'H264'), 
-    #                 10,
-    #                 (frame_width, frame_height) )
+    # 캠으로 들어온 비디오를 저장하는 코드 
+    out = cv2.VideoWriter("data/videos/YOLO3.mp4", 
+                    cv2.VideoWriter_fourcc(*'H264'), 
+                    10,
+                    (frame_width, frame_height) )
 
-    yolo = YOLO(0.6, 0.5)
+    yolo = YOLO(0.2, 0.3)
     all_classes = get_classes('yolo/data/coco_classes.txt')
 
     while cap.isOpened() :
@@ -99,7 +99,7 @@ else :
 
             result_image = detect_image(frame, yolo, all_classes)
             cv2.imshow('result', result_image)
-            # out.write(result_image)
+            out.write(result_image)
             end_time = time.time()
             print(end_time - strat_time)
             
