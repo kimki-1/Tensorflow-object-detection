@@ -31,25 +31,26 @@ PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\obje
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS)
 
 def load_model(model_name):
-    # # http://download.tensorflow.org/models/object_detection/tf2/20200711/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.tar.gz
-    # base_url = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/'
+    # http://download.tensorflow.org/models/object_detection/tf2/20200711/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.tar.gz
+    base_url = 'http://download.tensorflow.org/models/object_detection/'
     
-    # model_file = model_name + '.tar.gz'
-    # model_dir = tf.keras.utils.get_file(
-    #     fname=model_name, 
-    #     origin=base_url + model_file,
-    #     untar=True)
+    model_file = model_name + '.tar.gz'
+    model_dir = tf.keras.utils.get_file(
+        fname=model_name, 
+        origin=base_url + model_file,
+        untar=True)
 
-    # model_dir = pathlib.Path(model_dir)/"saved_model"
+    model_dir = pathlib.Path(model_dir)/"saved_model"
 
-    model = tf.saved_model.load('C:\\Users\\5-18\\Documents\\GitHub\\Tensorflow-object-detection\\data\\models\\ssd_resnet152_v1_fpn_640x640_coco17_tpu-8\\saved_model')
+    model = tf.saved_model.load(model_dir)
 
     return model
 
 ## 함수 테스트 (유닛테스트)
 # model_name = 'mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8'
 # model_name =  'ssd_mobilenet_v1_coco_2017_11_17'
-model_name =  'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
+# model_name =  'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
+model_name =  'ssd_mobilenet_v3_large_coco_2020_01_14'
 
 detection_model = load_model(model_name)
 

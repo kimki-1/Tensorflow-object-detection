@@ -6,10 +6,11 @@ import urllib.request
 import os 
 
 # 모델 다운로드 하고 압축 푸는 코드 
-MODEL_DATE = '20200711'
+# MODEL_DATE = '20200711'
 # MODEL_NAME = 'mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8'
 # MODEL_NAME = 'faster_rcnn_inception_resnet_v2_640x640_coco17_tpu-8'
-MODEL_NAME = 'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
+# MODEL_NAME = 'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
+MODEL_NAME = 'ssd_mobilenet_v3_large_coco_2020_01_14'
 
 # MODEL_NAME = 'ssd_mobilenet_v2_320x320_coco17_tpu-8'
 MODEL_TAR_FILENAME = MODEL_NAME + '.tar.gz'
@@ -17,8 +18,12 @@ MODELS_DIR = 'data/models'
 
 # tf zoo, 모델 다운로드 받을 수 있는곳 
 # https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
-MODELS_DOMWLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/tf2/'
-MODEL_DOWNLOAD_LINK = MODELS_DOMWLOAD_BASE + MODEL_DATE + '/' + MODEL_TAR_FILENAME
+
+# http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v3_large_coco_2020_01_14.tar.gz
+
+MODELS_DOMWLOAD_BASE = 'http://download.tensorflow.org/models/object_detection'
+# MODEL_DOWNLOAD_LINK = MODELS_DOMWLOAD_BASE + MODEL_DATE + '/' + MODEL_TAR_FILENAME
+MODEL_DOWNLOAD_LINK = MODELS_DOMWLOAD_BASE + '/' + MODEL_TAR_FILENAME
 
 PATH_TO_MODEL_TAR = os.path.join('data/models', MODEL_TAR_FILENAME)
 PATH_TO_CKPT = os.path.join('data/models', os.path.join(MODEL_NAME, 'checkpoint/'))
