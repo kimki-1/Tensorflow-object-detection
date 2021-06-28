@@ -25,8 +25,8 @@ utils_ops.tf = tf.compat.v1
 tf.gfile = tf.io.gfile
 
 # 내 로컬에 설치된 TFOD경로 
-PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
-# PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+# PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS)
 # print(category_index)
 
@@ -116,7 +116,7 @@ def show_inference(model, image_path):
     
 
 ## 함수 테스트
-PATH_TO_TEST_IMAGE_DIR = pathlib.Path('data\\images')
+PATH_TO_TEST_IMAGE_DIR = pathlib.Path('data\\test')
 TEST_IMAGE_PATH = sorted( list(PATH_TO_TEST_IMAGE_DIR.glob("testing*")) )
 
 # show_inference(detection_model, 'data/images/image1.jpg')

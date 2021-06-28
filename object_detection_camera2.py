@@ -26,27 +26,31 @@ utils_ops.tf = tf.compat.v1
 tf.gfile = tf.io.gfile
 
 # 내 로컬에 설치된 TFOD경로 
-PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+# PATH_TO_LABELS = 'C:\\Users\\admin\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
+PATH_TO_LABELS = 'C:\\Users\\5-18\\Documents\\Tensorflow\\models\\research\\object_detection\\data\\mscoco_label_map.pbtxt'
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS)
 
 def load_model(model_name):
-    # http://download.tensorflow.org/models/object_detection/tf2/20200711/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.tar.gz
-    base_url = 'http://download.tensorflow.org/models/object_detection/'
-    model_file = model_name + '.tar.gz'
-    model_dir = tf.keras.utils.get_file(
-        fname=model_name, 
-        origin=base_url + model_file,
-        untar=True)
+    # # http://download.tensorflow.org/models/object_detection/tf2/20200711/mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8.tar.gz
+    # base_url = 'http://download.tensorflow.org/models/object_detection/tf2/20200711/'
+    
+    # model_file = model_name + '.tar.gz'
+    # model_dir = tf.keras.utils.get_file(
+    #     fname=model_name, 
+    #     origin=base_url + model_file,
+    #     untar=True)
 
-    model_dir = pathlib.Path(model_dir)/"saved_model"
+    # model_dir = pathlib.Path(model_dir)/"saved_model"
 
-    model = tf.saved_model.load(str(model_dir))
+    model = tf.saved_model.load('C:\\Users\\5-18\\Documents\\GitHub\\Tensorflow-object-detection\\data\\models\\ssd_resnet152_v1_fpn_640x640_coco17_tpu-8\\saved_model')
 
     return model
 
 ## 함수 테스트 (유닛테스트)
 # model_name = 'mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8'
-model_name =  'ssd_mobilenet_v1_coco_2017_11_17'
+# model_name =  'ssd_mobilenet_v1_coco_2017_11_17'
+model_name =  'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
+
 detection_model = load_model(model_name)
 
 def run_inference_for_single_image(model, image):
@@ -101,13 +105,15 @@ def show_inference(model, image_np):
         category_index,
         instance_masks=output_dict.get('detection_masks_reframed',None),
         use_normalized_coordinates=True,
-        line_thickness=8)
+        line_thickness=3,
+        # min_score_threshold=0.3
+        )
 
     cv2.imshow('result', cv2.resize(image_np, (1600, 800)))
 
     return image_np
     
-cap = cv2.VideoCapture("data/videos/test.mp4")
+cap = cv2.VideoCapture("data/videos/good2.mp4")
 
 ## 카메라의 영상을 실행하는 코드
 # cap = cv2.VideoCapture(0)
