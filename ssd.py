@@ -16,16 +16,16 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
 # Define the video stream
-cap = cv2.VideoCapture("data/videos/god.mp4") # Change only if you have more than one webcams
+cap = cv2.VideoCapture("data/videos/gd2.mp4") # Change only if you have more than one webcams
 # cap = cv2.VideoCapture(0) 
 
 frame_width = int (cap.get(3)) 
 frame_height = int(cap.get(4))
 
 # 캠으로 들어온 비디오를 저장하는 코드 
-out = cv2.VideoWriter("data/videos/output2.avi", 
-                        cv2.VideoWriter_fourcc('M','J','P','G'), 
-                        10,
+out = cv2.VideoWriter("data/videos/output5.avi", 
+                        cv2.VideoWriter_fourcc('M','J','P','G'),
+                        30,
                         (frame_width, frame_height) )
 
 # What model to download.
@@ -34,8 +34,8 @@ out = cv2.VideoWriter("data/videos/output2.avi",
 # MODEL_NAME = 'faster_rcnn_nas_coco_2018_01_28'
 # MODEL_NAME = 'ssd_mobilenet_v2_coco_2018_03_29'
 
-MODEL_NAME = 'ssd_inception_v2_coco_2018_01_28'
-# MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
+# MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
+MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
 MODEL_FILE = MODEL_NAME + '.tar.gz'
 DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 

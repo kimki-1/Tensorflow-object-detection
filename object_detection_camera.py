@@ -10,7 +10,6 @@ import os
 # MODEL_NAME = 'mask_rcnn_inception_resnet_v2_1024x1024_coco17_gpu-8'
 # MODEL_NAME = 'faster_rcnn_inception_resnet_v2_640x640_coco17_tpu-8'
 # MODEL_NAME = 'ssd_resnet152_v1_fpn_640x640_coco17_tpu-8'
-MODEL_NAME = 'ssd_mobilenet_v3_large_coco_2020_01_14'
 
 # MODEL_NAME = 'ssd_mobilenet_v2_320x320_coco17_tpu-8'
 MODEL_TAR_FILENAME = MODEL_NAME + '.tar.gz'
