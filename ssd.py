@@ -32,10 +32,10 @@ out = cv2.VideoWriter("data/videos/output5.avi",
 # Models can bee found here: https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 
 # MODEL_NAME = 'faster_rcnn_nas_coco_2018_01_28'
-# MODEL_NAME = 'ssd_mobilenet_v2_coco_2018_03_29'
+MODEL_NAME = 'ssd_mobilenet_v2_coco_2018_03_29'
 
 # MODEL_NAME = 'faster_rcnn_inception_v2_coco_2018_01_28'
-MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
+# MODEL_NAME = 'mask_rcnn_inception_v2_coco_2018_01_28'
 MODEL_FILE = MODEL_NAME + '.tar.gz'
 DOWNLOAD_BASE = 'http://download.tensorflow.org/models/object_detection/'
 
